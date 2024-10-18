@@ -2,7 +2,7 @@ version: 0.1
 
 environment_variables:
   plaintext:
-    DJANGO_SETTINGS_MODULE: jobfinder.settings
+    DJANGO_SETTINGS_MODULE: jobfinderapi.settings
     SECRET_KEY: KDFGJDKLGFJKLç_ç8989898989JKHLKHJKHJKHJK
     DATABASE_DEFAULT_URL: postgres://postgres:postgresd@localhost:5432/jobfinderapi
     DATABASE_STREAMDATA_URL: postgres://postgres:postgresd@localhost:5432/jobfinderapi
