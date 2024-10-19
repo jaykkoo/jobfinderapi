@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'jobfinderapi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db_jobfinder',
+        'NAME': 'db-jobfinder',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'db-jobfinder.c96qmkyo6ess.us-east-1.rds.amazonaws.com',
+        'HOST': 'db-jobfinder.c3as2gamozkl.eu-west-3.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
