@@ -8,9 +8,11 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/wsgi/
 """
 
 import os
+import sys
 
 from django.core.wsgi import get_wsgi_application
 
+sys.path.append('/home/ubuntu/jobfinderapi')
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'jobfinderapi.settings')
 
 application = get_wsgi_application()
