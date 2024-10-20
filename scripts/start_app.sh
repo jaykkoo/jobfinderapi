@@ -1,6 +1,6 @@
 #!/usr/bin/bash 
 
-sed -i 's/\[]/\["35.180.234.203"]/' /home/ubuntu/jobfinderapi/blog/settings.py
+sed -i 's/\[]/\["35.180.234.203"]/' /home/ubuntu/jobfinderapi/jobfinderapi/settings.py
 
 python manage.py migrate 
 python manage.py makemigrations     
