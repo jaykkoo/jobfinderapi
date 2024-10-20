@@ -26,7 +26,3 @@ coverage/
 *.cover
 .pytest_cache/
 .coverage
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
