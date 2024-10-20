@@ -32,8 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["51.44.7.46", "localhost"]
 
 # Application definition
 
@@ -97,14 +96,6 @@ DATABASES = {
         'HOST': os.getenv('DATABASE_DEFAULT_URL', default='localhost'),
         'PORT': os.getenv('DATABASE_DEFAULT_PORT', default='5432'),  # Set default port
     },
-    'streamdata': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DATABASE_STREAMDATA_NAME', default='streamdata'),
-        'USER': os.getenv('DATABASE_STREAMDATA_USER', default='your-db-user'),
-        'PASSWORD': os.getenv('DATABASE_STREAMDATA_PASSWORD', default='your-db-password'),
-        'HOST': os.getenv('DATABASE_DEFAULT_STREAMDATA_URL', default='localhost'),
-        'PORT': os.getenv('DATABASE_STREAMDATA_PORT', default='5432'),  # Set default port
-    }
 }
 
 
