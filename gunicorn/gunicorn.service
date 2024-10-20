@@ -2,14 +2,13 @@
 Description=gunicorn daemon
 Requires=gunicorn.socket
 After=network.target
+
 [Service]
 User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/jobfinderapi
-ExecStart=/bin/bash -c 'PYTHONPATH=/home/ubuntu/jobfinderapi /home/ubuntu/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/ubuntu/jobfinderapi/jobfinderapi/jobfinderapi.sock jobfinderapi.wsgi:application'
+Environment="PYTHONPATH=/home/ubuntu/jobfinderapi"
+ExecStart=/home/ubuntu/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/ubuntu/jobfinderapi/jobfinderapi/jobfinderapi.sock jobfinderapi.wsgi:application
 
-
-
-       
 [Install]
 WantedBy=multi-user.target
