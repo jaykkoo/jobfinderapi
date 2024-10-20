@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = "django-insecure-t%%32jr=%g-*&23^3!wq4^78f9hty8ecpi6&z#f-x8rg#wc)$y"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -87,17 +87,27 @@ WSGI_APPLICATION = 'jobfinderapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('DATABASE_DEFAULT_NAME', default='jobfinder'),
+#         'USER': os.getenv('DATABASE_DEFAULT_USER', default='your-db-user'),
+#         'PASSWORD': os.getenv('DATABASE_DEFAULT_PASSWORD', default='your-db-password'),
+#         'HOST': os.getenv('DATABASE_DEFAULT_URL', default='localhost'),
+#         'PORT': os.getenv('DATABASE_DEFAULT_PORT', default='5432'),  # Set default port
+#     },
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DATABASE_DEFAULT_NAME', default='jobfinder'),
-        'USER': os.getenv('DATABASE_DEFAULT_USER', default='your-db-user'),
-        'PASSWORD': os.getenv('DATABASE_DEFAULT_PASSWORD', default='your-db-password'),
-        'HOST': os.getenv('DATABASE_DEFAULT_URL', default='localhost'),
-        'PORT': os.getenv('DATABASE_DEFAULT_PORT', default='5432'),  # Set default port
+        'NAME': "jobfinderdb",
+        'USER': "postgres",
+        'PASSWORD': "postgres",
+        'HOST': "database-jobfinder.c3as2gamozkl.eu-west-3.rds.amazonaws.com",
+        'PORT': 5432,  # Set default port
     },
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
