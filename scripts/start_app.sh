@@ -1,6 +1,6 @@
 #!/usr/bin/bash 
 
-sed -i 's/\[]/\["13.38.129.184"]/' /home/ubuntu/jobfinderapi/jobfinderapi/settings.py
+sed -i 's/\[]/\["54.205.8.73"]/' /home/ubuntu/django-aws_cicd/awscicd/settings.py
 
 python manage.py migrate 
 python manage.py makemigrations     
