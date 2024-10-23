@@ -3,7 +3,7 @@ import os
 from celery import Celery
 
 # Set default Django settings module for Celery
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'jobfinderapi.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'conf.settings')
 
 # Create the Celery application instance
 app = Celery('jobfinderapi')
