@@ -14,4 +14,4 @@ sudo chmod +x ./install
 sudo ./install auto
 
 # delete app
-sudo rm -rf /home/ubuntu/django-aws_cicd/*
+sudo rm -rf /home/ubuntu/jobfinderapi/*

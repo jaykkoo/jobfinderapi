@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/django-aws_cicd
+    destination: /home/ubuntu/jobfinderapi
 hooks:
   BeforeInstall:
       - location: scripts/before_install.sh

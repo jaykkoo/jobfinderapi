@@ -6,8 +6,8 @@ After=network.target
 [Service]
 User=ubuntu
 Group=www-data
-WorkingDirectory=/home/ubuntu/django-aws_cicd
-ExecStart=/home/ubuntu/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/ubuntu/django-aws_cicd.sock awscicd.wsgi:application
+WorkingDirectory=/home/ubuntu/jobfinderapi
+ExecStart=/home/ubuntu/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/ubuntu/jobfinderapi.sock jobfinderapi.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
