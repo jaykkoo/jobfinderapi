@@ -8,5 +8,3 @@ services:
       - "8000:8000"
     environment:
       - DEBUG=True
-volumes:
-  postgres_data:
