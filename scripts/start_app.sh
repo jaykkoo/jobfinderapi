@@ -2,20 +2,21 @@
 
 sed -i 's/\[]/\["3.83.3.114"]/' /home/ubuntu/jobfinderapi/config/settings.py
 
-python manage.py migrate 
-python manage.py makemigrations     
-python manage.py collectstatic
+sudo mkdir -p /home/ubuntu/jobfinderapi/staticfiles
+sudo mkdir -p /home/ubuntu/jobfinderapi/static
+
+# Navigate to the project directory
+cd /home/ubuntu/jobfinderapi || exit
+
+# Ensure correct permissions for staticfiles directory
+sudo chown -R ubuntu:www-data /home/ubuntu/jobfinderapi/staticfiles
+sudo chmod -R 755 /home/ubuntu/jobfinderapi/staticfiles
+
+# Run Django management commands
+/home/ubuntu/venv/bin/python manage.py migrate
+/home/ubuntu/venv/bin/python manage.py makemigrations
+/home/ubuntu/venv/bin/python manage.py collectstatic --noinput
+
+# Restart Gunicorn and Nginx services
 sudo service gunicorn restart
 sudo service nginx restart
-#sudo tail -f /var/log/nginx/error.log
-#sudo systemctl reload nginx
-#sudo tail -f /var/log/nginx/error.log
-#sudo nginx -t
-#sudo systemctl restart gunicorn
-#sudo systemctl status gunicorn
-#sudo systemctl status nginx
-# Check the status
-#systemctl status gunicorn
-# Restart:
-#systemctl restart gunicorn
-#sudo systemctl status nginx

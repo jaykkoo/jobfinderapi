@@ -9,9 +9,9 @@ hooks:
         timeout: 300
         runas: ubuntu
   AfterInstall:
-      # - location: scripts/after_install.sh
-      #   timeout: 300
-      #   runas: ubuntu
+      - location: scripts/after_install.sh
+        timeout: 300
+        runas: ubuntu
       - location: scripts/instance_os_dependencies.sh
         timeout: 300
         runas: ubuntu
@@ -22,10 +22,6 @@ hooks:
         timeout: 300
         runas: ubuntu
       - location: scripts/nginx.sh
-        timeout: 300
-        runas: ubuntu
-  ApplicationStop:
-      - location: scripts/stop_app.sh
         timeout: 300
         runas: ubuntu
   ApplicationStart:
