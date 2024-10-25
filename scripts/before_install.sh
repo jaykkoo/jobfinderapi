@@ -14,4 +14,4 @@ sudo chmod +x ./install
 sudo ./install auto
 
 # delete app
-sudo rm -rf /home/ubuntu/jobfinderapi/*
+sudo rm -rf /home/ubuntu/jobfinderapi
