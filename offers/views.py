@@ -11,7 +11,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from .serializers import OfferSerializer
 from .models import Offer
-from jobfinderapi.permissions import IsOwner
+from config.permissions import IsOwner
 
 
 class OfferView(APIView):
