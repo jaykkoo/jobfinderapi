@@ -1,6 +1,6 @@
 #!/usr/bin/bash 
 
-sed -i 's/\[]/\["54.165.8.141"]/' /home/ubuntu/jobfinderapi/config/settings.py
+sudo sed -i 's/\[]/\["54.165.8.141"]/' /home/ubuntu/jobfinderapi/config/settings.py
 
 sudo mkdir -p /home/ubuntu/jobfinderapi/staticfiles
 sudo mkdir -p /home/ubuntu/jobfinderapi/static
