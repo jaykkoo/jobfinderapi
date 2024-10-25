@@ -49,7 +49,7 @@ cd /home/ubuntu || { log "Failed to change directory to /home/ubuntu"; exit 1; }
 
 # Download the CodeDeploy agent install script
 log "Downloading CodeDeploy agent install script..."
-if ! wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install >> "$LOGFILE" 2>&1; then
+if ! sudo wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install >> "$LOGFILE" 2>&1; then
     log "Failed to download the install script."
     exit 1
 fi
