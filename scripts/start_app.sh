@@ -1,6 +1,6 @@
 #!/usr/bin/bash 
 
-sudo sed -i 's/ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = \["3.92.227.157", "127.0.0.1"\]/' /home/ubuntu/jobfinderapi/config/settings.py
+sudo sed -i 's/ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = \["3.92.227.157", "127.0.0.1" ,"localhost"\]/' /home/ubuntu/jobfinderapi/config/settings.py
 
 sudo mkdir -p /home/ubuntu/jobfinderapi/staticfiles
 sudo mkdir -p /home/ubuntu/jobfinderapi/static
