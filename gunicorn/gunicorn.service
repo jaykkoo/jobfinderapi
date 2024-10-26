@@ -7,7 +7,7 @@ After=network.target
 User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/jobfinderapi
-
+Environment="PYTHONPATH=/home/ubuntu/jobfinderapi"
 ExecStart=/home/ubuntu/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/ubuntu/jobfinderapi.sock config.wsgi:application
 
 [Install]
