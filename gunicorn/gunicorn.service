@@ -4,11 +4,11 @@ Requires=gunicorn.socket
 After=network.target
 
 [Service]
-User=ubuntu
+User=www-data
 Group=www-data
 WorkingDirectory=/home/ubuntu/jobfinderapi
 Environment="PYTHONPATH=/home/ubuntu/jobfinderapi"
-ExecStart=/home/ubuntu/venv/bin/gunicorn --access-logfile - --workers 5 --timeout 300 --bind unix:/run/gunicorn.sock config.wsgi:application
+ExecStart=/home/ubuntu/venv/bin/gunicorn --workers 5  --bind unix:/run/gunicorn.sock config.wsgi:application --log-level debug --access-logfile -
 
 
 [Install]
