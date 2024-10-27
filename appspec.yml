@@ -3,11 +3,16 @@ os: linux
 files:
   - source: /
     destination: /home/ubuntu/jobfinderapi
-hooks:      
-  AfterInstall:
+permissions:
+  - object: /home/ubuntu/jobfinderapi
+    owner: ubuntu
+    group: ubuntu
+hooks:
+  BeforeInstall:
       - location: scripts/before_install.sh
         timeout: 300
         runas: ubuntu
+  AfterInstall:
       - location: scripts/instance_os_dependencies.sh
         timeout: 300
         runas: ubuntu
