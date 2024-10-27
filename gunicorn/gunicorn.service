@@ -4,7 +4,7 @@ Requires=gunicorn.socket
 After=network.target
 
 [Service]
-User=www-data
+User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/jobfinderapi
 Environment="PYTHONPATH=/home/ubuntu/jobfinderapi"
