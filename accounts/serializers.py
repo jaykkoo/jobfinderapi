@@ -18,6 +18,8 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
+        if not validated_data['email'].strip():
+            raise serializers.ValidationError({'email': 'Email is required.'})
         profile_data = validated_data.pop('profile')
         user = User(
             email=validated_data['email'],
@@ -27,6 +29,11 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         Profile.objects.create(user=user, **profile_data)
         return user
+    
+    def update(self, instance, validated_data):
+        if not validated_data['email'].strip():
+            raise serializers.ValidationError({'email': 'Email is required.'})
+        return super().update(instance, validated_data)
 
 
 class LoginSerializer(serializers.Serializer):
@@ -36,13 +43,9 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, data):
         username = data.get('username')
         password = data.get('password')
-
         if username and password:
             user = authenticate(username=username, password=password)
             if user is None:
                 raise AuthenticationFailed('Invalid credentials.')
-        else:
-            raise serializers.ValidationError('Please provide both username and password.')
-
         data['user'] = user
         return data

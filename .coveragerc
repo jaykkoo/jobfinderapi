@@ -1,0 +1,8 @@
+[run]
+omit =
+    */migrations/*
+    */tests/*
+    */venv/*
+    manage.py
+    create_offers.py
+    tasks.py

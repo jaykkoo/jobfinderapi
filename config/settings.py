@@ -30,7 +30,8 @@ SECRET_KEY = "django-insecure-t%%32jr=%g-*&23^3!wq4^78f9hty8ecpi6&z#f-x8rg#wc)$y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["3.92.227.157", "127.0.0.1" ,"localhost"]
+# ALLOWED_HOSTS = ["3.92.227.157", "127.0.0.1" ,"localhost"]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1'] 
 
 # Application definition
 
@@ -48,17 +49,19 @@ INSTALLED_APPS = [
     'rest_framework',
     'celery',
     'django_celery_beat',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -88,9 +91,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DATABASE_DEFAULT_NAME', default='jobfinder'),
-#         'USER': os.getenv('DATABASE_DEFAULT_USER', default='your-db-user'),
-#         'PASSWORD': os.getenv('DATABASE_DEFAULT_PASSWORD', default='your-db-password'),
+#         'NAME': os.getenv('DATABASE_DEFAULT_NAME', default='jobfinderdb'),
+#         'USER': os.getenv('DATABASE_DEFAULT_USER', default='postgres'),
+#         'PASSWORD': os.getenv('DATABASE_DEFAULT_PASSWORD', default='postgres'),
 #         'HOST': os.getenv('DATABASE_DEFAULT_URL', default='localhost'),
 #         'PORT': os.getenv('DATABASE_DEFAULT_PORT', default='5432'),  # Set default port
 #     },
@@ -102,7 +105,7 @@ DATABASES = {
         'NAME': "jobfinderdb",
         'USER': "postgres",
         'PASSWORD': "postgres",
-        'HOST': "database-jobfinder.c3as2gamozkl.eu-west-3.rds.amazonaws.com",
+        'HOST': "localhost",
         'PORT': 5432,  # Set default port
     },
 }
@@ -165,10 +168,12 @@ REST_FRAMEWORK = {
 from datetime import timedelta
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),  # Short-lived access token
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),  # Long-lived refresh token
     'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,  # Enable token blacklisting
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'COOKIE_SECURE': False,  # Set True in production with HTTPS
 }
 
 # Sentry settings
@@ -198,3 +203,14 @@ EMAIL_USE_TLS = True  # Use TLS encryption
 EMAIL_HOST_USER = 'apptestbis@gmail.com'  # Your Gmail address
 EMAIL_HOST_PASSWORD = 'ryql ofzd juaz vrdm'  # Your Gmail password or app password
 DEFAULT_FROM_EMAIL = 'apptestbis@gmail.com'
+
+# CORS settings
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Your frontend origin
+]
+
+# Disable all origins if you are using CORS_ALLOWED_ORIGINS (do not need CORS_ORIGIN_WHITELIST)
+CORS_ORIGIN_ALLOW_ALL = False  # This should be False because you're specifying allowed origins
+
+# Allow credentials (important for cookies)
+CORS_ALLOW_CREDENTIALS = True
