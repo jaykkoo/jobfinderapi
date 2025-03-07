@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'celery',
     'django_celery_beat',
     'corsheaders',
+    'storages',
+
 ]
 
 MIDDLEWARE = [
@@ -84,6 +86,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -95,20 +99,32 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #         'USER': os.getenv('DATABASE_DEFAULT_USER', default='postgres'),
 #         'PASSWORD': os.getenv('DATABASE_DEFAULT_PASSWORD', default='postgres'),
 #         'HOST': os.getenv('DATABASE_DEFAULT_URL', default='localhost'),
-#         'PORT': os.getenv('DATABASE_DEFAULT_PORT', default='5432'),  # Set default port
+#         'PORT': os.getenv('DATABASE_DEFAULT_PORT', default='5432'),
+#     },
+# }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'jobfinderdb',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
 #     },
 # }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "jobfinderdb",
-        'USER': "postgres",
-        'PASSWORD': "postgres",
-        'HOST': "localhost",
-        'PORT': 5432,  # Set default port
+        'NAME': 'jobfinderdb',
+        'USER': 'postgres',
+        'PASSWORD': 'postgreS',
+        'HOST': 'database-2.cdy0g4auei8z.eu-west-3.rds.amazonaws.com',
+        'PORT': '5432',
     },
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -145,7 +161,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = "/home/ubuntu/jobfinderapi/staticfiles"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
@@ -214,3 +229,16 @@ CORS_ORIGIN_ALLOW_ALL = False  # This should be False because you're specifying 
 
 # Allow credentials (important for cookies)
 CORS_ALLOW_CREDENTIALS = True
+
+# AWS S3 configuration
+
+AWS_ACCESS_KEY_ID = "AKIAXZ5NGO7A436I7GWZ"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "bucket-jobfinder"
+
+STORAGES = {'staticfiles': {'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',}}
+
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+# AWS_S3_FILE_OVERWRITE = False
+
+ADMIN_MEDIA_PREFIX = '/static/admin/'

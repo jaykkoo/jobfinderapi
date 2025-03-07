@@ -1,21 +1,21 @@
 # Dockerfile
 # Use the official Python image as the base image
-FROM python:3.10-slim
+FROM python:3.12.0b3-bookworm
+
+ENV PYTHONUNBUFFERED=1
 
 # Set the working directory inside the container
-WORKDIR /app
+WORKDIR /django
 
 # Copy the requirements.txt file to the container
-COPY requirements.txt /app/
+COPY requirements.txt requirements.txt
 
 # Install the required Python packages
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Copy the Django project files to the container
-COPY . /app/
+COPY . .
 
-# Expose the port Django will run on
+CMD gunicorn jobfinderapi.wsgi:application --bind 0.0.0:8000
+
 EXPOSE 8000
-
-# Run the Django development server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
