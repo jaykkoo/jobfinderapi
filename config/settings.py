@@ -224,7 +224,7 @@ def get_aws_secret(secret_name):
 aws_secret = get_aws_secret("your-secret-name")
 
 if aws_secret:
-    SECRET_KEY = aws_secret.get("DJANGO_SECRET_KEY", "fallback-secret-key")
+    SECRET_KEY = aws_secret.get("SECRET_KEY", "fallback-secret-key")
     AWS_ACCESS_KEY_ID = aws_secret.get("AWS_ACCESS_KEY_ID", "")
     AWS_SECRET_ACCESS_KEY = aws_secret.get("AWS_SECRET_ACCESS_KEY", "")
     AWS_STORAGE_BUCKET_NAME = aws_secret.get("AWS_STORAGE_BUCKET_NAME", "")
