@@ -24,14 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-t%%32jr=%g-*&23^3!wq4^78f9hty8ecpi6&z#f-x8rg#wc)$y"
+SECRET_KEY = os.environ.get('SECRET_KEY', "django-insecure-#&")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 # ALLOWED_HOSTS = ["3.92.227.157", "127.0.0.1" ,"localhost"]
-ALLOWED_HOSTS = ['localhost', '127.0.0.1'] 
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*'] 
 
 # Application definition
 
@@ -89,39 +89,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DATABASE_DEFAULT_NAME', default='jobfinderdb'),
-#         'USER': os.getenv('DATABASE_DEFAULT_USER', default='postgres'),
-#         'PASSWORD': os.getenv('DATABASE_DEFAULT_PASSWORD', default='postgres'),
-#         'HOST': os.getenv('DATABASE_DEFAULT_URL', default='localhost'),
-#         'PORT': os.getenv('DATABASE_DEFAULT_PORT', default='5432'),
-#     },
-# }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'jobfinderdb',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     },
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'jobfinderdb',
-        'USER': 'postgres',
-        'PASSWORD': 'postgreS',
-        'HOST': 'database-2.cdy0g4auei8z.eu-west-3.rds.amazonaws.com',
-        'PORT': '5432',
+        'NAME': os.environ.get('DB_NAME', 'jobfinder'),
+        'USER': os.environ.get('DB_USER', 'postgres'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'postgres'), 
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     },
 }
 
@@ -203,11 +178,11 @@ sentry_sdk.init(
 
 # Celery
 
-CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'  # Using RabbitMQ in Docker
-CELERY_RESULT_BACKEND = 'rpc://'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
+# CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'  # Using RabbitMQ in Docker
+# CELERY_RESULT_BACKEND = 'rpc://'
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
 
 # Mail settings
 
@@ -232,9 +207,10 @@ CORS_ALLOW_CREDENTIALS = True
 
 # AWS S3 configuration
 
-AWS_ACCESS_KEY_ID = "AKIAXZ5NGO7A436I7GWZ"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_STORAGE_BUCKET_NAME = "bucket-jobfinder"
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', '')
+
 
 STORAGES = {'staticfiles': {'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',}}
 
