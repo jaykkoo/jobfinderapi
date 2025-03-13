@@ -23,6 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('SECRET_KEY', "django-insecure-#&")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -204,31 +207,14 @@ CORS_ALLOW_CREDENTIALS = True
 
 # AWS S3 configuration
 
-def get_aws_secret(secret_name):
-    """Fetch secret from AWS Secrets Manager"""
-    session = boto3.session.Session()
-    client = session.client(service_name="secretsmanager", region_name="eu-west-3")
-
-    try:
-        response = client.get_secret_value(SecretId=secret_name)
-        secret = response["SecretString"]
-        return json.loads(secret)  # Returns as a Python dictionary
-    except Exception as e:
-        print(f"Error fetching secret: {e}")
-        return None
-
-# Fetch the secret (Replace with your actual AWS secret name)
-aws_secret = get_aws_secret("your-secret-name")
-
-if aws_secret:
-    SECRET_KEY = aws_secret.get("SECRET_KEY", "fallback-secret-key")
-    AWS_ACCESS_KEY_ID = aws_secret.get("AWS_ACCESS_KEY_ID", "")
-    AWS_SECRET_ACCESS_KEY = aws_secret.get("AWS_SECRET_ACCESS_KEY", "")
-    AWS_STORAGE_BUCKET_NAME = aws_secret.get("AWS_STORAGE_BUCKET_NAME", "")
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-    ADMIN_MEDIA_PREFIX = '/static/admin/'
-    STORAGES = {'staticfiles': {'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',}}
-else:
-    raise ValueError("Failed to load AWS secrets")
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', '')
 
 
+STORAGES = {'staticfiles': {'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',}}
+
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+# AWS_S3_FILE_OVERWRITE = False
+
+ADMIN_MEDIA_PREFIX = '/static/admin/'
