@@ -224,5 +224,8 @@ AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
 # AWS_S3_FILE_OVERWRITE = False
 
-# ADMIN_MEDIA_PREFIX = '/static/admin/'
-# ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
+ADMIN_MEDIA_PREFIX = '/static/admin/'
+
+print("AWS_ACCESS_KEY_ID:", os.getenv("AWS_ACCESS_KEY_ID"))
+print("AWS_SECRET_ACCESS_KEY:", os.getenv("AWS_SECRET_ACCESS_KEY"))
+print("AWS_STORAGE_BUCKET_NAME:", os.getenv("AWS_STORAGE_BUCKET_NAME"))
