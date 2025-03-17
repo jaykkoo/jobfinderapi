@@ -30,8 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', "django-insecure-#&")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*'] 
-ALLOWED_HOSTS = ['35.180.198.48']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -91,13 +90,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'jobfinder'),
-        'USER': os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'postgres'), 
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -132,13 +127,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -176,13 +164,6 @@ sentry_sdk.init(
     traces_sample_rate= 1.0
 )
 
-# Celery
-
-# CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'  # Using RabbitMQ in Docker
-# CELERY_RESULT_BACKEND = 'rpc://'
-# CELERY_ACCEPT_CONTENT = ['json']
-# CELERY_TASK_SERIALIZER = 'json'
-# CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
 
 # Mail settings
 
@@ -194,38 +175,9 @@ EMAIL_HOST_USER = 'apptestbis@gmail.com'  # Your Gmail address
 EMAIL_HOST_PASSWORD = 'ryql ofzd juaz vrdm'  # Your Gmail password or app password
 DEFAULT_FROM_EMAIL = 'apptestbis@gmail.com'
 
-# CORS settings
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Your frontend origin
-]
 
 # Disable all origins if you are using CORS_ALLOWED_ORIGINS (do not need CORS_ORIGIN_WHITELIST)
 CORS_ORIGIN_ALLOW_ALL = False  # This should be False because you're specifying allowed origins
 
 # Allow credentials (important for cookies)
 CORS_ALLOW_CREDENTIALS = True
-
-# AWS S3 configuration
-
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', '')
-
-
-STORAGES = {
-    "default": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-    },
-    "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-    },
-}
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-
-# AWS_S3_FILE_OVERWRITE = False
-
-ADMIN_MEDIA_PREFIX = '/static/admin/'
-
-print("AWS_ACCESS_KEY_ID:", os.environ.get("AWS_ACCESS_KEY_ID"))
-print("AWS_SECRET_ACCESS_KEY:", os.getenv("AWS_SECRET_ACCESS_KEY"))
-print("AWS_STORAGE_BUCKET_NAME:", os.getenv("AWS_STORAGE_BUCKET_NAME"))

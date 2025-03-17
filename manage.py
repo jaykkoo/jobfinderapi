@@ -6,7 +6,9 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+    if __name__ == '__main__':
+    # Default to development if DJANGO_SETTINGS_MODULE isn't set
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'jobfinderapi.settings.dev')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
