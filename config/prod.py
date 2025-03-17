@@ -1,7 +1,7 @@
 from .base import *
 import os
 
-ALLOWED_HOSTS = ['directjobtoday.com']
+ALLOWED_HOSTS = ['35.180.198.48']
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
