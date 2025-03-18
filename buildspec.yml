@@ -5,9 +5,7 @@ phases:
     commands:
       - echo "Installing packages from requirements.txt..."
       - pip install -r requirements.txt
-      - echo "Installing PostgreSQL client..."
-      - sudo apt-get update -y
-      - sudo apt-get install -y postgresql-client  # Install PostgreSQL 13 client (or newer)
+
 
   pre_build:
     commands:
@@ -22,6 +20,8 @@ phases:
       - export AWS_STORAGE_BUCKET_NAME=$(echo $SECRET | jq -r .AWS_STORAGE_BUCKET_NAME)
       - export DJANGO_SETTINGS_MODULE=$(echo $SECRET | jq -r .DJANGO_SETTINGS_MODULE)
       - echo "Environment variables exported successfully."
+      - source venv/bin/activate
+      - echo "Virtual environment activated."
 
   build:
     commands:
