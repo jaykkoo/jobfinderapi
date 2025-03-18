@@ -11,8 +11,6 @@ phases:
       - pip install --upgrade pip
       # Install dependencies from requirements.txt
       - pip install -r requirements.txt
-      - pip list | grep psycopg2  # Verify psycopg2-binary is installed
-      - python -c "import psycopg2; print(psycopg2.__version__)" 
 
 
   pre_build:
@@ -36,7 +34,7 @@ phases:
       - echo "Running migrations..."
       - python manage.py makemigrations
       - python manage.py migrate --noinput
-      - python manage.py pytest
+      - pytest
       - echo "Collecting static files..."
       - python manage.py collectstatic --noinput
 
