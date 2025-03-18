@@ -3,7 +3,16 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Installing packages from requirements.txt..."
+      - sudo pip3 install virtualenv
+
+      # Create a virtual environment in your project directory
+      - cd /home/ubuntu/jobfinderapi  # Adjust to your project path
+      - python3 -m venv venv  # Create virtual environment in 'venv' directory
+
+      # Activate the virtual environment
+      - source venv/bin/activate  # Activate virtual environment
+
+      # Install dependencies from requirements.txt
       - pip install -r requirements.txt
 
 
