@@ -8,16 +8,7 @@ phases:
 
   pre_build:
     commands:
-      - export SECRET=$(aws secretsmanager get-secret-value --secret-id django-project_env_variable --query SecretString --output text)
-      - export SECRET_KEY=$(echo $SECRET | jq -r .SECRET_KEY)
-      - export DB_NAME=$(echo $SECRET | jq -r .DB_NAME)
-      - export DB_USER=$(echo $SECRET | jq -r .DB_USER)
-      - export DB_PASSWORD=$(echo $SECRET | jq -r .DB_PASSWORD)
-      - export DB_HOST=$(echo $SECRET | jq -r .DB_HOST)
-      - export AWS_ACCESS_KEY_ID=$(echo $SECRET | jq -r .AWS_ACCESS_KEY_ID)
-      - export AWS_SECRET_ACCESS_KEY=$(echo $SECRET | jq -r .AWS_SECRET_ACCESS_KEY)
-      - export AWS_STORAGE_BUCKET_NAME=$(echo $SECRET | jq -r .AWS_STORAGE_BUCKET_NAME)
-      - export DJANGO_SETTINGS_MODULE=$(echo $SECRET | jq -r .DJANGO_SETTINGS_MODULE)
+      - source /etc/apache2/envvars
       - echo "Environment variables exported successfully."
 
   build:
