@@ -8,7 +8,8 @@ phases:
 
       # Activate the virtual environment
       - source venv/bin/activate  # Activate virtual environment
-
+      - pip install --upgrade pip
+      - pip install psycopg2-binary
       # Install dependencies from requirements.txt
       - pip install -r requirements.txt
 
