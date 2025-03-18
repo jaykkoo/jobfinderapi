@@ -181,3 +181,4 @@ CORS_ORIGIN_ALLOW_ALL = False  # This should be False because you're specifying 
 
 # Allow credentials (important for cookies)
 CORS_ALLOW_CREDENTIALS = True
+
