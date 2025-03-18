@@ -29,7 +29,7 @@ DATABASES = {
         'USER': os.environ.get('DB_USER'),
         'PASSWORD': os.environ.get('DB_PASSWORD'), 
         'HOST': os.environ.get('DB_HOST'),
-        'PORT': 5432,
+        'PORT': '5432',
     },
 }
 STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
