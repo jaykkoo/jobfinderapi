@@ -3,8 +3,10 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Checking OS details..."
-      - cat /etc/os-release
+      - sudo yum update -y
+      - sudo amazon-linux-extras enable postgresql14
+      - sudo yum install -y postgresql14 postgresql14-devel
+      - pip install --upgrade psycopg2-binary
       - sudo pip3 install virtualenv
       # Create a virtual environment in your project directory
       - python3 -m venv venv  # Create virtual environment in 'venv' directory
