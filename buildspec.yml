@@ -11,6 +11,8 @@ phases:
       - pip install --upgrade pip
       # Install dependencies from requirements.txt
       - pip install -r requirements.txt
+      - pip list | grep psycopg2  # Verify psycopg2-binary is installed
+      - python -c "import psycopg2; print(psycopg2.__version__)" 
 
 
   pre_build:
