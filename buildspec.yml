@@ -3,9 +3,8 @@ version: 0.2
 phases:
   install:
     commands:
-      - sudo apt update
-      - sudo apt install -y postgresql-client libpq-dev
-      - pip install psycopg2-binary
+      - echo "Checking OS details..."
+      - cat /etc/os-release
       - sudo pip3 install virtualenv
       # Create a virtual environment in your project directory
       - python3 -m venv venv  # Create virtual environment in 'venv' directory
