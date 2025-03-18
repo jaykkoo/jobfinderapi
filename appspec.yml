@@ -9,12 +9,6 @@ files:
 file_exists_behavior: OVERWRITE
 
 hooks:
-  BeforeInstall:
-    - location: scripts/stop_apache.sh
-      timeout: 180
-  AfterInstall:
-    - location: scripts/start_apache.sh
-      timeout: 180
   ApplicationStart:
-    - location: scripts/start_django.sh
+    - location: scripts/start_application.sh
       timeout: 180

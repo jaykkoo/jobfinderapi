@@ -2,11 +2,10 @@ version: 0.2
 
 phases:
   install:
-      runtime-versions:
-        python: 3.11  # Use the version you're using
-      commands:
-        # Install Apache and mod_wsgi for Django
-        - sudo pip3 install -r requirements.txt
+    commands:
+      - echo "Installing packages from requirements.txt..."
+      - pip install -r requirements.txt
+
 
   pre_build:
     commands:
@@ -22,7 +21,14 @@ phases:
       - export DJANGO_SETTINGS_MODULE=$(echo $SECRET | jq -r .DJANGO_SETTINGS_MODULE)
       - echo "Environment variables exported successfully."
 
-
+  build:
+    commands:
+      - echo "Running migrations..."
+      - python manage.py makemigrations
+      - python manage.py migrate --noinput
+      - python maanage.py pytest
+      - echo "Collecting static files..."
+      - python manage.py collectstatic --noinput
 
   post_build:
     commands:
@@ -31,4 +37,3 @@ phases:
 artifacts:
   files:
     - '**/*'
-  discard-paths: yes
