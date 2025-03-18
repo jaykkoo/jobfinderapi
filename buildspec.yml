@@ -17,7 +17,7 @@ phases:
 
   pre_build:
     commands:
-      - export SECRET=$(aws secretsmanager get-secret-value --secret-id django-project_env_variable --query SecretString --output json)
+      - export SECRET=$(aws secretsmanager get-secret-value --secret-id django-project_env_variable --query SecretString --output text)
       - export SECRET_KEY=$(echo $SECRET | jq -r .SECRET_KEY)
       - export DB_NAME=$(echo $SECRET | jq -r .DB_NAME)
       - export DB_USER=$(echo $SECRET | jq -r .DB_USER)
