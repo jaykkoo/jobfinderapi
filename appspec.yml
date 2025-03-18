@@ -1,0 +1,14 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /home/ubuntu/jobfinderapi/
+    overwrite: true
+
+file_exists_behavior: OVERWRITE
+
+hooks:
+  ApplicationStart:
+    - location: scripts/start_application.sh
+      timeout: 180
