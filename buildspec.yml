@@ -23,6 +23,7 @@ phases:
   build:
     commands:
       - echo "Running migrations..."
+      - python manage.py makemigrations
       - python manage.py migrate --noinput
       - echo "Collecting static files..."
       - python manage.py collectstatic --noinput
