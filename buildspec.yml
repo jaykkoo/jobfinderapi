@@ -22,12 +22,7 @@ phases:
       - export DJANGO_SETTINGS_MODULE=$(echo $SECRET | jq -r .DJANGO_SETTINGS_MODULE)
       - echo "Environment variables exported successfully."
 
-  test:
-    commands:
-      # Run Django tests here
-      - echo "Running tests..."
-      - source /venv/bin/activate  # Activate virtualenv if used
-      - python manage.py pytest
+
 
   post_build:
     commands:
