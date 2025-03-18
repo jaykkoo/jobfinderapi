@@ -6,8 +6,8 @@ phases:
       - echo "Installing packages from requirements.txt..."
       - pip install -r requirements.txt
       - echo "Installing PostgreSQL client..."
-      - apt-get update -y
-      - apt-get install -y postgresql-client  # Install PostgreSQL 13 client (or newer)
+      - sudo apt-get update -y
+      - sudo apt-get install -y postgresql-client  # Install PostgreSQL 13 client (or newer)
 
   pre_build:
     commands:
