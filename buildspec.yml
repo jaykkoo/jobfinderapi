@@ -6,7 +6,6 @@ phases:
       - sudo pip3 install virtualenv
 
       # Create a virtual environment in your project directory
-      - cd /home/ubuntu/jobfinderapi  # Adjust to your project path
       - python3 -m venv venv  # Create virtual environment in 'venv' directory
 
       # Activate the virtual environment
