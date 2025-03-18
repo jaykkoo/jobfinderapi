@@ -20,6 +20,7 @@ phases:
       - export AWS_STORAGE_BUCKET_NAME=$(echo $SECRET | jq -r .AWS_STORAGE_BUCKET_NAME)
       - export DJANGO_SETTINGS_MODULE=$(echo $SECRET | jq -r .DJANGO_SETTINGS_MODULE)
       - echo "Environment variables exported successfully."
+      - echo ls
       - source venv/bin/activate
       - echo "Virtual environment activated."
 
