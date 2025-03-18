@@ -6,12 +6,7 @@ phases:
         python: 3.11  # Use the version you're using
       commands:
         # Install Apache and mod_wsgi for Django
-        - sudo yum update -y
-        - sudo yum install -y httpd mod_ssl
-        - sudo yum install -y python3
         - sudo pip3 install -r requirements.txt
-        - sudo yum install -y gcc libffi-devel python3-devel
-        - sudo pip3 install mod_wsgi
 
   pre_build:
     commands:
