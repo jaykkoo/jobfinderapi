@@ -34,7 +34,7 @@ phases:
       - echo "Running migrations..."
       - python manage.py makemigrations
       - python manage.py migrate --noinput
-      - pytest
+      - pytest --ds=config.prod 
       - echo "Collecting static files..."
       - python manage.py collectstatic --noinput
 

@@ -30,6 +30,12 @@ DATABASES = {
         'PASSWORD': os.environ.get('DB_PASSWORD'), 
         'HOST': os.environ.get('DB_HOST'),
         'PORT': '5432',
+         'TEST': {
+            'NAME': 'jobfindertest',  # Default to 'test_db' if not set
+            'USER': 'postgres',
+            'PASSWORD': 'postgreS',
+            'HOST':'database-test-2.cdy0g4auei8z.eu-west-3.rds.amazonaws.com',
+        },
     },
 }
 STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
