@@ -39,3 +39,7 @@ DATABASES = {
     },
 }
 STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
+
+CORS_ALLOWED_ORIGINS = [
+    "http://35.180.198.48",  # Your frontend origin
+]
