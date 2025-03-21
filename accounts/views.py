@@ -79,3 +79,25 @@ class CheckAuthView(APIView):
             'username': request.user.username,
             'email': request.user.email,
         })
+
+
+class DecodeTokenView(APIView):
+    def get(self, request):
+        # Get the access token from the Authorization header
+        auth_header = request.headers.get('Authorization')
+        if not auth_header or not auth_header.startswith('Bearer '):
+            raise AuthenticationFailed('Authorization header missing or invalid.')
+
+        access_token = auth_header.split(' ')[1]
+
+        try:
+            # Decode the token
+            payload = jwt.decode(access_token, settings.SECRET_KEY, algorithms=["HS256"])
+            return Response({
+                'message': 'Token decoded successfully.',
+                'payload': payload,
+            })
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Token has expired.')
+        except jwt.InvalidTokenError:
+            raise AuthenticationFailed('Invalid token.')
