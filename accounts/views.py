@@ -44,6 +44,7 @@ def login(request):
 
 @api_view(['POST'])
 def logout(request):
+    print(requeest.user, 'user')
     response = delete_cookie_response(
         key='refresh_token',
         message='User logged out successfully.',
