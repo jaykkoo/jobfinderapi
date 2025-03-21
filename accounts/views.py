@@ -53,17 +53,10 @@ def logout(request):
 
 
 class Account(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     def get(self, request):
-        print('Cookies:', request.COOKIES)
-        
-        # Access a specific cookie
-        refresh_token = request.COOKIES.get('refresh_token')
-        print('Refresh Token:', refresh_token)
-        
-        return Response({'message': 'Cookies checked'})
-        # user = request.user
-        # return Response(UserSerializer(user).data)
+        user = request.user
+        return Response(UserSerializer(user).data)
 
     def put(self, request):
         user = request.user
