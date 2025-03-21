@@ -25,6 +25,7 @@ def register(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     
+    
 @api_view(['POST'])
 def login(request):
     serializer = LoginSerializer(data=request.data)
@@ -39,12 +40,12 @@ def login(request):
             access_token=str(refresh.access_token),
             is_profile_professional = user.profile.is_professional
         )
+        print(request.user, 'user')
         return response
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def logout(request):
-    print(request.user, 'user')
     response = delete_cookie_response(
         key='refresh_token',
         message='User logged out successfully.',
@@ -66,3 +67,15 @@ class Account(APIView):
             serializer.save()
             return Response({'message': 'User updated successfully.'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CheckAuthView(APIView):
+    # Only allow authenticated users to access this view
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        # If the user is authenticated, return a success message
+        return Response({
+            'message': 'You are authenticated.',
+            'username': request.user.username,
+            'email': request.user.email,
+        })
