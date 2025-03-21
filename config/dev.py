@@ -10,7 +10,7 @@ STATICFILES_DIRS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'jobfinder',
+        'NAME': 'jobfinderdb',
         'USER': 'postgres',
         'PASSWORD': 'postgres', 
         'HOST': 'localhost',
