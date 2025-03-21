@@ -45,7 +45,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True  # Allow sending cookies with requests
-CSRF_COOKIE_SECURE = True  # Ensure CSRF cookie is sent over HTTPS
+CSRF_COOKIE_SECURE = False  # Ensure CSRF cookie is sent over HTTPS
 CSRF_COOKIE_SAMESITE = 'None'  # Allow CSRF cookies to be sent cross-site
 CSRF_TRUSTED_ORIGINS = [
     'http://35.180.198.48',  # Trust your frontend domain
