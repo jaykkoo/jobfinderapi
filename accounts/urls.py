@@ -14,6 +14,4 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('user/', Account.as_view(), name='user'),
     path('login/', login, name='login'),
-    path('check-auth/', CheckAuthView.as_view(), name='check-auth'),
-    path('decode-token/', DecodeTokenView.as_view(), name='decode-token'),
 ]

@@ -40,7 +40,6 @@ def login(request):
             access_token=str(refresh.access_token),
             is_profile_professional = user.profile.is_professional
         )
-        print(request.user, 'user')
         return response
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -67,39 +66,3 @@ class Account(APIView):
             serializer.save()
             return Response({'message': 'User updated successfully.'})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class CheckAuthView(APIView):
-    # Only allow authenticated users to access this view
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        # If the user is authenticated, return a success message
-        return Response({
-            'message': 'You are authenticated.',
-            'username': request.user.username,
-            'email': request.user.email,
-        })
-
-
-class DecodeTokenView(APIView):
-    def get(self, request):
-        # Get the access token from the Authorization header
-        auth_header = request.headers.get('Authorization')
-        print(request.headers, 'headers')
-        print('Authorization Header:', auth_header)
-        if not auth_header or not auth_header.startswith('Bearer '):
-            raise AuthenticationFailed('Authorization header missing or invalid.')
-
-        access_token = auth_header.split(' ')[1]
-
-        try:
-            # Decode the token
-            payload = jwt.decode(access_token, settings.SECRET_KEY, algorithms=["HS256"])
-            return Response({
-                'message': 'Token decoded successfully.',
-                'payload': payload,
-            })
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Token has expired.')
-        except jwt.InvalidTokenError:
-            raise AuthenticationFailed('Invalid token.')
