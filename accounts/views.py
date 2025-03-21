@@ -85,6 +85,7 @@ class DecodeTokenView(APIView):
     def get(self, request):
         # Get the access token from the Authorization header
         auth_header = request.headers.get('Authorization')
+        print(request.headers, 'headers')
         print('Authorization Header:', auth_header)
         if not auth_header or not auth_header.startswith('Bearer '):
             raise AuthenticationFailed('Authorization header missing or invalid.')
