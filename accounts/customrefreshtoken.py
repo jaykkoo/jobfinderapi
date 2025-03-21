@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 
 class RefreshTokenView(APIView):
     def post(self, request):
+        print(request.user, 'user tokek')
         refresh_token = request.COOKIES.get('refresh_token')
         if not refresh_token:
             raise AuthenticationFailed('Refresh token not provided or expired')
