@@ -4,7 +4,7 @@ from django.contrib.auth.views import PasswordResetView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
 )
-from .views import login, register, Account, logout, CheckAuthView, DecodeTokenView
+from .views import login, register, Account, logout
 from .customrefreshtoken import RefreshTokenView
 urlpatterns = [
     path('logout/', logout, name='logout'),
