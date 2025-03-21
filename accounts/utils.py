@@ -23,7 +23,7 @@ def create_cookie_response(
         value=value,
         httponly=True,  # Prevent JavaScript from accessing the cookie
         secure=False,   # Set to True in production
-        samesite='strict', # Prevent cross-site request forgery
+        samesite='None', # Prevent cross-site request forgery
         max_age=60 * 60 * 24 * 7,  # 7 days in seconds
     )
     return response

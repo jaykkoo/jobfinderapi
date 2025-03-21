@@ -50,5 +50,3 @@ CSRF_COOKIE_SAMESITE = 'None'  # Allow CSRF cookies to be sent cross-site
 CSRF_TRUSTED_ORIGINS = [
     'http://35.180.198.48',  # Trust your frontend domain
 ]
-SESSION_COOKIE_SAMESITE = 'None'  # Allow session cookies to be sent cross-site
-SESSION_COOKIE_HTTPONLY = True  # Prevent client-side JavaScript from accessing the cookie
