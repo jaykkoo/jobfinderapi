@@ -10,7 +10,7 @@ from .utils import (
     create_cookie_response,
     delete_cookie_response
 )
-
+from rest_framework.exceptions import AuthenticationFailed
 
 @api_view(['POST'])
 def register(request):
