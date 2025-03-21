@@ -53,7 +53,7 @@ def logout(request):
 
 
 class Account(APIView):
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         user = request.user
         return Response(UserSerializer(user).data)
