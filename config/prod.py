@@ -44,6 +44,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://35.180.198.48",  # Your frontend origin
 ]
 
+CSRF_COOKIE_SAMESITE = 'Lax'
 CORS_ALLOW_CREDENTIALS = True  # Allow sending cookies with requests
 CSRF_COOKIE_SECURE = False  # Ensure CSRF cookie is sent over HTTPS
 CSRF_TRUSTED_ORIGINS = [
