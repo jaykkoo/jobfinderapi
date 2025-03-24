@@ -54,3 +54,4 @@ CSRF_TRUSTED_ORIGINS = [
 CELERY_BROKER_URL = 'amqp://admin:admin@localhost:5672/'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'rpc://'
