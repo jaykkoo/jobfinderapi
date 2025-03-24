@@ -16,5 +16,6 @@ app.conf.update(
     result_backend='rpc://',  # Using RabbitMQ for result storage
 )
 
+app.conf.beat_scheduler = 'django_celery_beat.schedulers:DatabaseScheduler'
 # Discover tasks from all installed Django apps
 app.autodiscover_tasks()
