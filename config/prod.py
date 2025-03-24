@@ -50,3 +50,7 @@ CSRF_COOKIE_SECURE = False  # Ensure CSRF cookie is sent over HTTPS
 CSRF_TRUSTED_ORIGINS = [
     'http://35.180.198.48',  # Trust your frontend domain
 ]
+
+CELERY_BROKER_URL = 'amqp://admin:admin@localhost:5672/'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
